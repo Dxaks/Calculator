@@ -35,19 +35,17 @@ number.forEach((btn) =>
             justCalculated = false;
         }
 
-        let doubleClick = ''
+    let click = event.target.textContent;
+
     if(!num1) {
-        num1 = parseInt(event.target.textContent);
+        num1 = click;
     }
     else if (num1 && !operatorValue) {
-        doubleClick = event.target.textContent;
-        num1 += doubleClick; 
+        num1 += click;
     }
     else if (num1 && operatorValue) {
-        doubleClick = event.target.textContent;
-        num2 += doubleClick; 
+        num2 += click;
     }
-    console.log(`first no.: ${num1}, second no.: ${num2}`);
     
     if (!operatorValue) {
       display.textContent = num1;
@@ -59,17 +57,18 @@ number.forEach((btn) =>
 
 operator.forEach((btn) => 
     btn.addEventListener('click', (event) => {   
-      const operatorValue = event.target.textContent; 
+      operatorValue = event.target.textContent; 
+
+       if (operatorValue === 'C') {
+        clear();
+        return
+      }
+      console.log(operatorValue)
   })
 );
  
 
 equalSign.addEventListener('click', () => {
-
-      if (operatorValue === 'C') {
-        clear();
-        return
-      }
 
       if (operatorValue === 'n!') {
         result = factorial(parseInt(num1))
@@ -96,17 +95,16 @@ equalSign.addEventListener('click', () => {
               display.textContent = result
               num1 = result;
               num2 = '';
+              operatorValue = '';
               justCalculated = true; 
         }
 
-
-     operatorValue = operatorValue;
-
-
 });
+
 const clear = () => {
+  display.textContent = 0;
   num1 = '';
   num2 = '';
   operatorValue = '';
-  display.textContent = 0;
+  justCalculated = false;
 }

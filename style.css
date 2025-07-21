@@ -5,6 +5,7 @@
 }
 
 body {
+    background: hsla(0, 0%, 0%, 0.223);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,11 +18,11 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    height: 500px;
+    height: 570px;
     width: 350px;
     border: 2px solid;
     border-radius: 30px;
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.415);
 
 }
 
@@ -29,6 +30,7 @@ body {
     margin-top: 20px;
     padding: 10px;
     font-size: 30px;
+    color: #000;
     text-align: right;
     width: 95%;
     height: 60px;
@@ -45,21 +47,30 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 10px;
-    gap: 15px;
+    gap: 10px;
 }
 
 #equalSign,
 .number,
 .operator {
     width: 30%;
-    height: 50px;
-    border: 1px solid;
-    border-radius: 50%;
+    height: 30%;
+    border-radius: 70%;
     background-color: #6c6868;
+    box-shadow:  21px 21px 42px #7d7d7d,
+                -21px -21px 42px #ffffff;
     font-size: 1.2em;
+    color: #000;
     cursor: pointer;
+    &:hover {
+        background-color: #1e0f0f;
+        box-shadow:  21px 21px 42px #7d7d7d,
+                    -21px -21px 42px #ffffff;
+    }
+    
 }
 
+#equalSign,
 .operator {
     background: #f68282;
 }
