@@ -21,6 +21,7 @@ body {
     width: 350px;
     border: 2px solid;
     border-radius: 30px;
+    background-color: aliceblue;
 
 }
 
@@ -47,13 +48,18 @@ body {
     gap: 15px;
 }
 
+#equalSign,
 .number,
 .operator {
     width: 30%;
     height: 50px;
     border: 1px solid;
     border-radius: 50%;
-    background-color: #f0f0f0;
+    background-color: #6c6868;
     font-size: 1.2em;
     cursor: pointer;
+}
+
+.operator {
+    background: #f68282;
 }

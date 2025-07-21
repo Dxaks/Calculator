@@ -1,21 +1,22 @@
 const number = document.querySelectorAll('.number');
 const operator = document.querySelectorAll('.operator');
 const display = document.querySelector('.screen');
+const equalSign = document.getElementById('equalSign')
+console.log(equalSign)
 
 let num1 = '';
 let num2 = '';
 let operatorValue = '';
 let result = '';
+let justCalculated = false;
 
 const add = (n1, n2) => n1 + n2;
 const multiply = (n1, n2) => n1 * n2;
 const divid = (n1, n2) => n1 / n2;
 const substract = (n1, n2) => n1 - n2;
-const power = (n1, n2) => (n1, n2)
+const power = (n1, n2) => Math.pow(n1, n2)
 const factorial = (n) => {
-  if(n == 0) {
-    return;
-  }
+  if(n == 0) n = n + 1;
   let arr = [];
   for (let i = n; i >= 1; i--) {
     arr.push(i);
@@ -25,6 +26,15 @@ const factorial = (n) => {
 
 number.forEach((btn) => 
     btn.addEventListener('click', (event) => {
+
+        if (justCalculated && !operatorValue) {
+            num1 = '';
+            num2 = '';
+            result = '';
+            display.textContent = '';
+            justCalculated = false;
+        }
+
         let doubleClick = ''
     if(!num1) {
         num1 = parseInt(event.target.textContent);
@@ -48,12 +58,28 @@ number.forEach((btn) =>
 ));
 
 operator.forEach((btn) => 
-    btn.addEventListener('click', (event) => {    
-      const newOperator = event.target.textContent;
-      if (event.target.textContent === 'C') {
+    btn.addEventListener('click', (event) => {   
+      const operatorValue = event.target.textContent; 
+  })
+);
+ 
+
+equalSign.addEventListener('click', () => {
+
+      if (operatorValue === 'C') {
         clear();
         return
       }
+
+      if (operatorValue === 'n!') {
+        result = factorial(parseInt(num1))
+         display.textContent = result
+         num1 = result;
+         num2 = '';
+         justCalculated = true;
+         return;
+    }
+    
         if (num1 !== '' && num2 !== '' && operatorValue !== '') {
             if (operatorValue === '+' ) {
                 result = add(parseInt(num1), parseInt(num2));
@@ -70,22 +96,14 @@ operator.forEach((btn) =>
               display.textContent = result
               num1 = result;
               num2 = '';
-              operatorValue = '';
+              justCalculated = true; 
         }
 
-        operatorValue = newOperator;
 
-      if (operatorValue === 'n!') {
-        result = factorial(parseInt(num1))
-         display.textContent = result
-         num1 = result;
-         num2 = '';
-         operatorValue = '';
-    }
-    
-  })
-);
+     operatorValue = operatorValue;
 
+
+});
 const clear = () => {
   num1 = '';
   num2 = '';
