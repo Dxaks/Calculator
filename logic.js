@@ -98,7 +98,15 @@ function calculateNumbers() {
       } else if (operatorValue === "*") {
         result = multiply(parseInt(num1), parseInt(num2));
       } else if (operatorValue === "/") {
+        if (num2 === "0") {
+          display.textContent = "Error";
+          num1 = "";
+          num2 = "";
+          operatorValue = "";
+          return;
+        }
         result = divid(parseInt(num1), parseInt(num2));
+
       } else if (operatorValue === "x**n") {
         result = Math.pow(parseInt(num1), parseInt(num2));
       }
