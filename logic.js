@@ -1,15 +1,17 @@
+// declaration of global variables
+
 const number = document.querySelectorAll(".number");
 const operator = document.querySelectorAll(".operator");
 const display = document.querySelector(".screen");
 const equalSign = document.getElementById("equalSign");
-console.log(equalSign);
-
 let num1 = "";
 let num2 = "";
 let operatorValue = "";
 let result = "";
 let justCalculated = false;
 
+// declaration of functions for operations
+// add, multiply, divide, subtract, power, factorial
 const add = (n1, n2) => n1 + n2;
 const multiply = (n1, n2) => n1 * n2;
 const divid = (n1, n2) => n1 / n2;
@@ -24,6 +26,7 @@ const factorial = (n) => {
   return arr.reduce((a, b) => a * b);
 };
 
+// event listener for each button click 
 number.forEach((btn) =>
   btn.addEventListener("click", (event) => {
     if (justCalculated && !operatorValue) {
@@ -52,6 +55,7 @@ number.forEach((btn) =>
   })
 );
 
+// event listener for each operator button click
 operator.forEach((btn) =>
   btn.addEventListener("click", (event) => {
 
@@ -65,10 +69,10 @@ operator.forEach((btn) =>
       clear();
       return;
     }
-    console.log(operatorValue);
   })
 );
 
+// event listener for equal sign button click
 equalSign.addEventListener("click", () => {
   if (operatorValue === "n!") {
       result = factorial(parseInt(num1));
@@ -78,12 +82,14 @@ equalSign.addEventListener("click", () => {
       justCalculated = true;
       return;
   }
-
+  
   if (num1 !== "" && num2 !== "" && operatorValue !== "") {
-      calculateNumbers()
+      calculateNumbers();
     }
+
 });
 
+// function to calculate the result based on the operator and numbers
 function calculateNumbers() {
   if (operatorValue === "+") {
         result = add(parseInt(num1), parseInt(num2));
@@ -104,6 +110,7 @@ function calculateNumbers() {
       justCalculated = true;
 }
 
+// function to clear the display and reset variables
 const clear = () => {
   display.textContent = 0;
   num1 = "";
